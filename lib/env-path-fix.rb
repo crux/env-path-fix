@@ -8,7 +8,9 @@ ops = {
   "-" => :remove, "--" => :remove_re 
 }
 
-class Path
+# Pathfix
+#
+class Pathfix
   def initialize
     @a = (ENV['PATH'].split ':').map { |p| Pathname.new(p).cleanpath.to_s }
     clean
@@ -44,14 +46,11 @@ class Path
   end
 end
 
-
-op = ARGV.shift || :clean
 begin
-  if ARGV.first
-    puts Path.new.send(ops[op] || op, *ARGV)
-  else
-    puts Path.new.send(ops[op] || op)
-  end
+  op = ARGV.shift || :clean
+  op = ops[op] || op
+  path = Pathfix.new.send op, *ARGV
+  puts path
 rescue => e
   puts "#{e}"
   $stderr.puts <<-EOT

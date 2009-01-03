@@ -1,0 +1,3 @@
+# pathfix.rb to ease your __export PATH=<dir>:${PATH}__ pains
+
+lorem ....
