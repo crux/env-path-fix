@@ -1,3 +1,3 @@
-# pathfix.rb to ease your __export PATH=<dir>:${PATH}__ pains
+# env-path-fix.rb to ease your __export PATH=/some/dir/here/:${PATH}__ pains
 
 lorem ....
