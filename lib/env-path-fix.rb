@@ -8,9 +8,9 @@ ops = {
   "-" => :remove, "--" => :remove_re 
 }
 
-# Pathfix
+# EnvPathFix
 #
-class Pathfix
+class EnvPathFix
   def initialize
     @a = (ENV['PATH'].split ':').map { |p| Pathname.new(p).cleanpath.to_s }
     clean
@@ -49,7 +49,7 @@ end
 begin
   op = ARGV.shift || :clean
   op = ops[op] || op
-  path = Pathfix.new.send op, *ARGV
+  path = EnvPathFix.new.send op, *ARGV
   puts path
 rescue => e
   puts "#{e}"
