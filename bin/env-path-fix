@@ -1,0 +1,30 @@
+#!/usr/bin/env ruby
+
+puts "+++++++++++++++++++++ #{__FILE__} ++++"
+require 'env-path-fix'
+
+Operations = { 
+  '$' => :append, 
+  "+" => :prepend, "^" => :prepend, 
+  "-" => :remove, "--" => :remove_re 
+}
+
+def main *args
+  op = args.shift || :clean
+  op = Operations[op] || op
+  path = EnvPathFix.new.send op, *args
+  puts path
+rescue => e
+  puts "#{e}"
+  $stderr.puts <<-EOT
+
+usage: 
+  #{$0} (prepend | remove | append) <args> ...
+  #{$0} clean
+
+  EOT
+  puts ENV['PATH']
+  exit -1
+end
+
+main *ARGV 
