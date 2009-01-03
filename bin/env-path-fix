@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-puts "+++++++++++++++++++++ #{__FILE__} ++++"
 require 'env-path-fix'
 
 Operations = { 

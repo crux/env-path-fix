@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name     = "env-path-fix.rb"
-  gem.version  = "0.1.0"
+  gem.version  = "0.1.1"
   gem.date     = "2009-01-03"
   gem.summary  = "making PATH ENV var manipulation easy"
   gem.email    = "env-path-fix.rb@sebrink.de"
@@ -11,7 +11,9 @@ Gem::Specification.new do |gem|
     README.markdown 
     env-path-fix.gemspec 
     lib/env-path-fix.rb
+    bin/env-path-fix
   )
+  gem.executables << 'env-path-fix'
   gem.test_files = ["test/test_pathfix.rb"]
   gem.has_rdoc = true
   gem.rdoc_options = ["--main", "README.markdown"]

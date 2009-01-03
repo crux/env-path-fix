@@ -1,16 +1,9 @@
-#!/usr/bin/env ruby
-
-require 'pathname'
-
-ops = { 
-  '$' => :append, 
-  "+" => :prepend, "^" => :prepend, 
-  "-" => :remove, "--" => :remove_re 
-}
-
 # EnvPathFix
 #
 class EnvPathFix
+
+  require 'pathname'
+
   def initialize
     @a = (ENV['PATH'].split ':').map { |p| Pathname.new(p).cleanpath.to_s }
     clean
@@ -44,22 +37,4 @@ class EnvPathFix
   def to_s
     @a.uniq.join ':'
   end
-end
-
-begin
-  op = ARGV.shift || :clean
-  op = ops[op] || op
-  path = EnvPathFix.new.send op, *ARGV
-  puts path
-rescue => e
-  puts "#{e}"
-  $stderr.puts <<-EOT
-
-usage: 
-  #{$0} (prepend | remove | append) <args> ...
-  #{$0} clean
-
-  EOT
-  puts ENV['PATH']
-  exit -1
 end

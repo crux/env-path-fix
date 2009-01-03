@@ -8,8 +8,8 @@ class TestEnvPathFix < Test::Unit::TestCase
   def setup
   end
 
-  def test_clean
-    assert true
+  def test_new
+    assert_not_nil epf = EnvPathFix.new
   end
 end
 
